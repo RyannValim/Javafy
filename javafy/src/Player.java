@@ -1,5 +1,5 @@
 public class Player {
-
+    // Métodos
     public void tocarMusica(){
         System.out.println("Tocando Musica...");
     }
@@ -11,5 +11,4 @@ public class Player {
     public void pararMusica(){
         System.out.println("Parando Musica...");
     }
-    
 }
