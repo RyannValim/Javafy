@@ -1,9 +1,9 @@
 public abstract class Pessoa {
-    //Atributos
+    // Atributos
     private String nome;
     private String email;
 
-    // Encapsulamento
+    // Métodos
     public String getNome() {
         return nome;
     }

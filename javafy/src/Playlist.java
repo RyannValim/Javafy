@@ -8,7 +8,7 @@ public class Playlist {
     private ArrayList<Musica> musicas;
 
     // Métodos
-    public void adicionarPlaylist(){};
-    public void removerPlaylist(){};
-    public void listarPlaylist(){};
+    public void adicionarMusica(){};
+    public void removerMusica(){};
+    public void listarMusica(){};
 }
