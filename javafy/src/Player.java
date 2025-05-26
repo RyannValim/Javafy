@@ -1,14 +1,14 @@
 public class Player {
     // Métodos
-    public void tocarMusica(){
-        System.out.println("Tocando Musica...");
+    public void tocarMusica(Musica musica){
+        // implementar a lógica para fazer a música tocar.
     }
 
     public void pausarMusica(){
-        System.out.println("Pausando Musica...");
+        // implementar a lógica para fazer a música pausar.
     }
 
     public void pararMusica(){
-        System.out.println("Parando Musica...");
+        // implementar a lógica de parar a música.
     }
 }
