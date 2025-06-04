@@ -1,18 +1,20 @@
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Objects; // Para usar em equals/hashCode
 
 public class Playlist {
     // Atributos
     private String nomePlaylist;
     private LocalDateTime dataCriacao;
-    private Usuario dono;
-    private ArrayList<Musica> musicas = new ArrayList<>();
+    private Usuario dono; // Associação com Usuario
+    private ArrayList<Musica> musicas; // Agregação com Musica
 
     // Construtor
-    public Playlist(String nomePlaylist, LocalDateTime dataCriacao, Usuario dono){
+    public Playlist(String nomePlaylist, Usuario dono){
         this.nomePlaylist = nomePlaylist;
-        this.dataCriacao = dataCriacao;
         this.dono = dono;
+        this.dataCriacao = LocalDateTime.now(); // Definida já no momento da criação.
+        this.musicas = new ArrayList<>();  // Inicializa a lista de músicas.
     }
 
     // Getters/Setters
@@ -23,43 +25,77 @@ public class Playlist {
         this.nomePlaylist = nomePlaylist;
     }
 
+    // Somente Getter, pois a data da criaçao da Playlist é automatica pelo código.
     public LocalDateTime getDataCriacao(){
         return dataCriacao;
     }
-    public void setDataCriacao(LocalDateTime dataCriacao){
-        this.dataCriacao = dataCriacao;
-    }
 
+    // Somente Getter, pois não faz sentido alterar o dono da Playlist após a criação.
     public Usuario getDono(){
         return dono;
     }
-    public void setDono(Usuario dono){
-        this.dono = dono;
-    }
 
+    // Somente Getter, um setter aqui seria mexer com o ArrayList inteiro de Musica, não faz muito sentido.
     public ArrayList<Musica> getMusicas(){
         return musicas;
     }
-    public void setMusicas(ArrayList<Musica> musicas){
-        this.musicas = musicas;
-    }    
 
     // Métodos
     @Override
-    public String toString() {
-        return "Playlist: " + nomePlaylist + " | Criada em: " + dataCriacao;
-        // Para facilitar o debug
+    public String toString() { // toString para facilitar o debug.
+        return "Playlist [Nome: " + nomePlaylist +
+               ", Criada em: " + dataCriacao.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")) +
+               ", Dono: " + dono.getNome() + // CHECHAR: Pessoa.getNome() deve estar implementado!
+               ", Músicas: " + musicas.size() + "]";
     }
 
     public void adicionarMusica(Musica musica){
-        // implementar a lógica para adicionar a música na playlist.
+        // Verifica se a música já existe na playlist para evitar duplicatas
+        if (this.musicas.contains(musica)) {
+            System.out.println("ERRO: A música '" + musica.getTituloMusica() + "' já existe na playlist '" + this.nomePlaylist + "'.");
+        } else {
+            this.musicas.add(musica);
+            System.out.println("Música '" + musica.getTituloMusica() + "' adicionada à playlist '" + this.nomePlaylist + "'.");
+        }
     }
 
     public void removerMusica(String tituloMusica){
-        // implementar a lógica para procurar a música pelo título e remover, se existir.
+        if (tituloMusica == null || tituloMusica.trim().isEmpty()) {
+            System.out.println("Erro: O título da música para remover não pode ser vazio.");
+            return;
+        }
+
+        Musica musicaParaRemover = null;
+        // Percorre a lista para encontrar a música pelo título (ignorando caixa)
+        for (Musica musica : this.musicas) {
+            if (musica.getTituloMusica().equalsIgnoreCase(tituloMusica)) {
+                musicaParaRemover = musica;
+                break;
+            }
+        }
+
+        if (musicaParaRemover != null) {
+            this.musicas.remove(musicaParaRemover);
+            System.out.println("Música '" + tituloMusica + "' removida da playlist '" + this.nomePlaylist + "'.");
+        } else {
+            System.out.println("Música '" + tituloMusica + "' não encontrada na playlist '" + this.nomePlaylist + "'.");
+        }
     }
 
     public void listarMusicas(){
-        // implementar a lógica para percorrer a lista e imprimir as informações das músicas.
+        if (this.musicas.isEmpty()) {
+            System.out.println("A playlist '" + this.nomePlaylist + "' não possui músicas para serem listadas.");
+            return;
+        }
+
+        System.out.println("\n--- Músicas na Playlist: " + this.nomePlaylist + " ---");
+        for (int i = 0; i < this.musicas.size(); i++) {
+            Musica musica = this.musicas.get(i);
+            System.out.println((i + 1) + ". Título: " + musica.getTituloMusica() +
+                               " | Artista: " + musica.getArtista().getNome() + // CHECHAR:  Artista.getNome() deve estar implementado!
+                               " | Gênero: " + musica.getGeneroMusica() +
+                               " | Duração: " + musica.getDuracaoMusica() + "s");
+        }
+        System.out.println("----------------------------------------");
     }
 }

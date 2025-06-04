@@ -23,7 +23,7 @@ public class Main{
             if(choice == 1){
                 // Login
                 boolean logado = false;
-                Integer returna = -1;
+                Integer returno = -1;
                 Integer tentativas = 0;
 
                 while(tentativas < 3 && !logado){
@@ -58,8 +58,8 @@ public class Main{
                         }
                     }
 
-                    returna = sc.nextInt();
-                    if(returna == 0){break;}
+                    returno = sc.nextInt();
+                    if(returno == 0){break;}
                 }
 
 
