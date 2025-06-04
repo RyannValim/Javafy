@@ -22,28 +22,45 @@ public class Main{
 
             if(choice == 1){
                 // Login
-
-                Menu.cabecalho();
-
-                System.out.print("Digite seu uuario: ");
-                String userLogin = sc.nextLine();
-
-                System.out.print("Digite sua senha: ");
-                String senhaLogin = sc.nextLine();
-
-                boolean existe = false;
+                boolean logado = false;
                 Integer returna = -1;
-                
-                for(Usuario user : usuarios) {
-                    if (user.getLogin().equals(userLogin) && user.getSenha().equals(senhaLogin)){
-                        existe = true;
-                        Menu.cabecalho();
-                        Menu.cabecalhoParteInterna();
-                        System.out.println("Login realizado com sucesso!");
-                    }
-                }
+                Integer tentativas = 0;
 
-                returna = sc.nextInt();
+                while(tentativas < 3 && !logado){
+                    Menu.cabecalho();
+
+                    System.out.print("Digite seu usuario: ");
+                    String userLogin = sc.nextLine();
+
+                    System.out.print("Digite sua senha: ");
+                    String senhaLogin = sc.nextLine();
+
+                    
+                    
+                    for(Usuario user : usuarios) {
+                        if (user.getLogin().equals(userLogin) && user.getSenha().equals(senhaLogin)){
+                            logado = true;
+                            Menu.cabecalho();
+                            Menu.cabecalhoParteInterna();
+                            System.out.println("Login realizado com sucesso!");
+                            //Chamar função do aplcativo
+                        }
+                    }
+
+                    if (!logado){
+                        tentativas++;
+                        Menu.cabecalho();
+                        Menu.loginErrado();
+                        System.out.println("Tentativa" + tentativas + " de 3!");
+
+                        if(tentativas == 3){
+                            System.out.println("Numero maximo de tentativas atingido, retornando ao menu principal!");
+                        }
+                    }
+
+                    returna = sc.nextInt();
+                    if(returna == 0){break;}
+                }
 
 
             }
@@ -52,24 +69,31 @@ public class Main{
 
                 Integer retorno = -1;
 
-                Menu.cabecalho();
+                while (retorno != 0){
 
-                System.out.print("Digite seu nome: ");
-                String nome = sc.nextLine();
+                    Menu.cabecalho();
 
-                System.out.print("Digite o email: ");
-                String email = sc.nextLine();
+                    System.out.print("Digite seu nome: ");
+                    String nome = sc.nextLine();
 
-                System.out.print("Digito o seu usuario: ");
-                String user = sc.nextLine();
+                    System.out.print("Digite o email: ");
+                    String email = sc.nextLine();
 
-                System.out.print("Digite a senha: ");
-                String senha = sc.nextLine();
+                    System.out.print("Digito o seu usuario: ");
+                    String user = sc.nextLine();
 
-                usuarios.add(new Usuario(nome, email, user, senha));
+                    System.out.print("Digite a senha: ");
+                    String senha = sc.nextLine();
 
-                System.out.print("\nUsuario cadastrado com sucesso! \nDigite 0 para retornar.");
-                retorno = sc.nextInt();
+                    if(Validador.validarEmail(email) && Validador.validarSenha(senha)){
+                        usuarios.add(new Usuario(nome, email, user, senha));
+                        System.out.print("\nUsuario cadastrado com sucesso! \nDigite 0 para retornar.");
+                        retorno = sc.nextInt();
+                        if(retorno == 0) break;
+                    } else {
+                        System.out.println("Email ou Senha nao atingiram os requisitos minimos. Tente novamente!");
+                    }
+                }
 
             }
             else if (choice == 3){

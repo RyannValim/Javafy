@@ -63,12 +63,11 @@ public class Menu {
     }
 
     // Nenhuma conta
-    public static void nenhumaContaCadastrada() throws InterruptedException {
+    public static void loginErrado() throws InterruptedException {
         limparTela();
         cabecalho();
         System.out.println("|                                                                                                    |");
-        System.out.println("|                Nao existem contas criadas ainda. Por favor, cadastre uma nova conta!               |");
-        escolhas();
+        System.out.println("|                Usuario ou senha não conferem! Tente novamente.                                     |");
     }
 
     // Finalizar programa
