@@ -23,6 +23,10 @@ public class Artista extends Pessoa {
         // implementar a lógica que permite o artista adicionar um álbum em seu perfil musical.
     }
 
+    public void removerAlbum(String tituloAlbum) {
+        // // implementar a lógica que permite o artista remover um álbum do seu perfil musical.
+    }
+
     public void listarAlbuns(){
         // implementar a lógica para listar todos os álbuns do artista.
     }

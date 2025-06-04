@@ -11,7 +11,6 @@ public class Usuario extends Pessoa {
         super(nome, email);
         this.login = login;
         this.senha = senha;
-        this.playlists = new ArrayList<>();
     }
 
     // Getters/Setters
@@ -30,7 +29,13 @@ public class Usuario extends Pessoa {
     }
 
     // Métodos
-    public void criarPlaylist(Playlist playlist){
+    @Override
+    public String toString() {
+        return "Usuário: " + getNome() + " | Login: " + login;
+        // Para facilitar o debug
+    }
+
+    public void criarPlaylist(String nomePlaylist){
         // implementar a lógica para possibilitar ao usuário a criação de uma nova playlist.
     }
 

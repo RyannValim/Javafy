@@ -4,14 +4,17 @@ import java.util.ArrayList;
 public class Album {
     //Atributos
     private String tituloAlbum;
-    private LocalDateTime anoLancamento;
-    private ArrayList<Musica> musicas;
+    private Artista artista;
+    private final LocalDateTime dataLancamentoAlbum;
+    private ArrayList<Musica> musicas = new ArrayList<>();
+    private TipoAlbum tipo; // ENUM para decidir se vai ser single ou album.
 
     // Construtor
-    public Album(String tituloAlbum, LocalDateTime anoLancamento){
+    public Album(String tituloAlbum, Artista artista, LocalDateTime dataLancamentoAlbum){
         this.tituloAlbum = tituloAlbum;
-        this.anoLancamento = anoLancamento; 
-        this.musicas = new ArrayList<>();
+        this.artista = artista;
+        this.dataLancamentoAlbum = dataLancamentoAlbum;
+        this.tipo = TipoAlbum.SINGLE; // Inicializa ENUM em single por enquanto.
     }
 
     // Getters/Setters
@@ -22,11 +25,15 @@ public class Album {
         this.tituloAlbum = tituloAlbum;
     }
 
-    public LocalDateTime getAnoLancamento(){
-        return anoLancamento;
+    public Artista getArtista() {
+        return artista;
     }
-    public void setAnoLancamento(LocalDateTime anoLancamento){
-        this.anoLancamento = anoLancamento;
+    public void setArtista(Artista artista) {
+        this.artista = artista;
+    }
+
+    public LocalDateTime getDataLancamentoAlbum(){
+        return dataLancamentoAlbum; // sem setter por que não faz sentido.
     }
 
     public ArrayList<Musica> getMusicas(){
@@ -34,14 +41,19 @@ public class Album {
     }
     public void setMusicas(ArrayList<Musica> musicas){
         this.musicas = musicas;
+        atualizarTipo(); // sempre que alterar, garantir que o tipo seja atualizado.
     }
 
     // Métodos
+    private void atualizarTipo() {
+        // implementar a lógica para atualizar o tipo (single/album) baseado no tamanho do álbum. 
+    }
+
     public void adicionarMusica(Musica musica){
         // implementar a lógica para adicionar a música no álbum.
     }
 
-    public void removerMusica(){
+    public void removerMusica(String tituloMusica){
         // implementar a lógica para remover a música do álbum.
     }
     

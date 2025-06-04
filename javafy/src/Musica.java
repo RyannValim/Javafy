@@ -1,9 +1,12 @@
+import java.time.LocalDateTime;
+
 public class Musica {
     // Atributos
     private Artista artista;
     private String tituloMusica;
     private String generoMusica;
     private Integer duracaoMusica;
+    private final LocalDateTime dataLancamentoMusica;
 
     // Construtor
     public Musica(Artista artista, String tituloMusica, String generoMusica, Integer duracaoMusica){
@@ -11,6 +14,7 @@ public class Musica {
         this.tituloMusica = tituloMusica;
         this.generoMusica = generoMusica;
         this.duracaoMusica = duracaoMusica;
+        this.dataLancamentoMusica = LocalDateTime.now();
     }
 
     // Getters/Setters
@@ -40,6 +44,10 @@ public class Musica {
     }
     public void setDuracaoMusica(Integer duracaoMusica){
         this.duracaoMusica = duracaoMusica;
+    }
+
+    public LocalDateTime getDataLancamentoMusica(){
+        return dataLancamentoMusica; // sem setter por que não faz sentido alterar.
     }
 
     // Métodos

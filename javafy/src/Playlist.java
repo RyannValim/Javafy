@@ -2,15 +2,17 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Playlist {
-    //Atributos
+    // Atributos
     private String nomePlaylist;
     private LocalDateTime dataCriacao;
+    private Usuario dono;
     private ArrayList<Musica> musicas = new ArrayList<>();
 
     // Construtor
-    public Playlist(String nomePlaylist, LocalDateTime dataCriacao){
+    public Playlist(String nomePlaylist, LocalDateTime dataCriacao, Usuario dono){
         this.nomePlaylist = nomePlaylist;
         this.dataCriacao = dataCriacao;
+        this.dono = dono;
     }
 
     // Getters/Setters
@@ -28,6 +30,13 @@ public class Playlist {
         this.dataCriacao = dataCriacao;
     }
 
+    public Usuario getDono(){
+        return dono;
+    }
+    public void setDono(Usuario dono){
+        this.dono = dono;
+    }
+
     public ArrayList<Musica> getMusicas(){
         return musicas;
     }
@@ -36,6 +45,12 @@ public class Playlist {
     }    
 
     // Métodos
+    @Override
+    public String toString() {
+        return "Playlist: " + nomePlaylist + " | Criada em: " + dataCriacao;
+        // Para facilitar o debug
+    }
+
     public void adicionarMusica(Musica musica){
         // implementar a lógica para adicionar a música na playlist.
     }
