@@ -1,8 +1,5 @@
 public class Menu {
-
-
     public static void cabecalho() throws InterruptedException{
-        limparTela();
         System.out.println("======================================================================================================");
         System.out.println("|                                                                                                    |");
         System.out.println("|                                                                                 !                  |");
@@ -19,8 +16,6 @@ public class Menu {
         System.out.println("|                                                                                                    |");
         System.out.println("======================================================================================================");
         Thread.sleep(200);
-
-        
     }
 
     // Parte interna
@@ -34,7 +29,7 @@ public class Menu {
         System.out.println("|                  achar um jeito de fazer a musica tocar conforme a playlist do usuario             |");
         System.out.println("|                                   nao foi tao facil quanto pensamos.                               |");
         System.out.println("|                                                                                                    |");
-        System.out.println("|                                   Aperte '0' para voltar para o menu                               |");
+        System.out.println("|                                   Aperte ENTER para voltar para o menu                             |");
         System.out.println("|                                                                                                    |");
         System.out.println("======================================================================================================");
     }
@@ -59,6 +54,8 @@ public class Menu {
         cabecalho();
         System.out.println("|                                                                                                    |");
         System.out.println("|                    Voce selecionou uma opcao errada. Por favor, tente novamente!                   |");
+        System.out.println("|                                                                                                    |");
+        System.out.println("======================================================================================================");
         escolhas();
     }
 
@@ -68,6 +65,8 @@ public class Menu {
         cabecalho();
         System.out.println("|                                                                                                    |");
         System.out.println("|                Usuario ou senha não conferem! Tente novamente.                                     |");
+        System.out.println("|                                                                                                    |");
+        System.out.println("======================================================================================================");
     }
 
     // Finalizar programa
@@ -102,7 +101,7 @@ public class Menu {
         System.out.println("|        Nosso app permite que voce cadastre usuarios, crie playlists e curta suas musicas!          |");
         System.out.println("|                                                                                                    |");
         System.out.println("|                                                                                                    |");
-        System.out.println("|                             Aperte (0) para voltar para o Menu                                     |");
+        System.out.println("|                             Aperte ENTER para voltar para o Menu                                     |");
         System.out.println("|                                                                                                    |");
         System.out.println("======================================================================================================");
     }
@@ -138,12 +137,12 @@ public class Menu {
         cabecalho();
         System.out.println("|                                                                                                    |");
         System.out.println("|                    Voce selecionou uma opcao errada. Por favor, tente novamente!                   |");
+        System.out.println("|                                                                                                    |");
+        System.out.println("======================================================================================================");
         escolhasAdmin();
     }
 
     private static void limparTela() {
         for (int i = 0; i < 50; ++i) System.out.println();
     }
-
-    /*  */
 }
