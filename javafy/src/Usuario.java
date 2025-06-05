@@ -32,16 +32,15 @@ public class Usuario extends Pessoa{
     public ArrayList<Playlist> getPlaylists(){
         return playlists;
     }
-    
-    // Métodos
 
+    // Métodos
     public Playlist getPlaylist(String nomePlaylist) {
         for (Playlist p : playlists) {
             if (p.getNomePlaylist().equalsIgnoreCase(nomePlaylist)) {
                 return p;
             }
         }
-        return null; // Não encontrou
+        return null;
     }
 
     public void criarPlaylist(String nomePlaylist){
