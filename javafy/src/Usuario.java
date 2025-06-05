@@ -34,6 +34,16 @@ public class Usuario extends Pessoa{
     }
     
     // Métodos
+
+    public Playlist getPlaylist(String nomePlaylist) {
+        for (Playlist p : playlists) {
+            if (p.getNomePlaylist().equalsIgnoreCase(nomePlaylist)) {
+                return p;
+            }
+        }
+        return null; // Não encontrou
+    }
+
     public void criarPlaylist(String nomePlaylist){
         if(nomePlaylist == null || nomePlaylist.trim().isEmpty()){
             System.out.println("Erro: O nome da playlist não pode ser vazio.");
