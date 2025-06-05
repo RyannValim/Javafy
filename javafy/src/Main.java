@@ -12,7 +12,7 @@ public class Main {
         ArrayList<Usuario> usuarios = new ArrayList<>();
         usuarios.add(new Usuario("Lucas", "lucas@javafy.com", "lucas", "C@xinha123"));
         usuarios.add(new Usuario("Christian", "chris@javafy.com", "chris", "Ris@lis456"));
-        usuarios.add(new Usuario("Ryann", "ryann@javafy.com", "ryann", "P@stel789"));
+        usuarios.add(new Usuario("Ryann", "ryann@javafy.com", "ryann", "P@odiQueijo789"));
 
         // Artista
         Artista artista1 = new Artista("Freddie Mercury");
