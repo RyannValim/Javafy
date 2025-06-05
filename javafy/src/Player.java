@@ -1,18 +1,44 @@
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class Player {
+    private Queue<Musica> listaMusica;
+
+    // Construtor
+    public Player() {
+        this.listaMusica = new LinkedList<>();
+    }
+
+    // Getters
+    public Queue<Musica> getListaMusica() {
+        return listaMusica;
+    }
+
     // Métodos
     public void tocarPlaylist(Playlist playlist) {
-        // implementar a lógica para fazer uma playlist tocar a partir do indice 0.
+        listaMusica.clear();
+        listaMusica.addAll(playlist.getMusicas());
+        tocarPlayer();
     }
 
-    public void tocarMusica(Musica musica){
-        // implementar a lógica para fazer a música tocar.
+    public void tocarMusica(Musica musica) {
+        listaMusica.clear();
+        listaMusica.add(musica);
+        tocarPlayer();
     }
 
-    public void passarMusica(){
-        // implementar a lógica para fazer a música passar.
+    public void tocarPlayer() {
+        if (listaMusica.isEmpty()) {
+            System.out.println("Nenhuma música na fila.");
+        } else {
+            System.out.println("Tocando...");
+            for (Musica m : listaMusica) {
+                System.out.println("♪ " + m.getTituloMusica() + " - " + m.getArtista().getNome());
+            }
+        }
     }
 
-    public void pararPlayer(){
-        // implementar a lógica de parar o player.
+    public void pausarPlayer() {
+        System.out.println("Música pausada.");
     }
 }
