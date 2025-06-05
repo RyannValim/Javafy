@@ -4,16 +4,16 @@ import java.util.ArrayList;
 public class Playlist {
     // Atributos
     private String nomePlaylist;
-    private LocalDateTime dataCriacao;
-    private Usuario dono; // Associação com Usuario
-    private ArrayList<Musica> musicas; // Agregação com Musica
+    private final LocalDateTime dataCriacao;
+    private final Usuario dono;
+    private final ArrayList<Musica> musicas;
 
     // Construtor
     public Playlist(String nomePlaylist, Usuario dono){
         this.nomePlaylist = nomePlaylist;
         this.dono = dono;
-        this.dataCriacao = LocalDateTime.now(); // Definida já no momento da criação.
-        this.musicas = new ArrayList<>();  // Inicializa a lista de músicas.
+        this.dataCriacao = LocalDateTime.now();
+        this.musicas = new ArrayList<>();
     }
 
     // Getters/Setters
@@ -24,32 +24,20 @@ public class Playlist {
         this.nomePlaylist = nomePlaylist;
     }
 
-    // Somente Getter, pois a data da criaçao da Playlist é automatica pelo código.
     public LocalDateTime getDataCriacao(){
         return dataCriacao;
     }
 
-    // Somente Getter, pois não faz sentido alterar o dono da Playlist após a criação.
     public Usuario getDono(){
         return dono;
     }
 
-    // Somente Getter, um setter aqui seria mexer com o ArrayList inteiro de Musica, não faz muito sentido.
     public ArrayList<Musica> getMusicas(){
         return musicas;
     }
 
     // Métodos
-    @Override
-    public String toString() { // toString para facilitar o debug.
-        return "Playlist [Nome: " + nomePlaylist +
-               ", Criada em: " + dataCriacao.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")) +
-               ", Dono: " + dono.getNome() + // CHECHAR: Pessoa.getNome() deve estar implementado!
-               ", Músicas: " + musicas.size() + "]";
-    }
-
     public void adicionarMusica(Musica musica){
-        // Verifica se a música já existe na playlist para evitar duplicatas
         if (this.musicas.contains(musica)) {
             System.out.println("ERRO: A música '" + musica.getTituloMusica() + "' já existe na playlist '" + this.nomePlaylist + "'.");
         } else {
@@ -65,7 +53,6 @@ public class Playlist {
         }
 
         Musica musicaParaRemover = null;
-        // Percorre a lista para encontrar a música pelo título (ignorando caixa)
         for (Musica musica : this.musicas) {
             if (musica.getTituloMusica().equalsIgnoreCase(tituloMusica)) {
                 musicaParaRemover = musica;
@@ -89,12 +76,16 @@ public class Playlist {
 
         System.out.println("\n--- Músicas na Playlist: " + this.nomePlaylist + " ---");
         for (int i = 0; i < this.musicas.size(); i++) {
-            Musica musica = this.musicas.get(i);
-            System.out.println((i + 1) + ". Título: " + musica.getTituloMusica() +
-                               " | Artista: " + musica.getArtista().getNome() + // CHECHAR:  Artista.getNome() deve estar implementado!
-                               " | Gênero: " + musica.getGeneroMusica() +
-                               " | Duração: " + musica.getDuracaoMusica() + "s");
+            System.out.println((i + 1) + ". " + this.musicas.get(i));
         }
         System.out.println("----------------------------------------");
+    }
+
+    @Override
+    public String toString() {
+        return "Playlist [Nome: " + nomePlaylist +
+               ", Criada em: " + dataCriacao.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")) +
+               ", Dono: " + dono.getNome() +
+               ", Músicas: " + musicas.size() + "]";
     }
 }

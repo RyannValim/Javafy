@@ -1,7 +1,9 @@
 public abstract class Pessoa {
+    // Atributos
     private String nome;
     private String email;
 
+    // Construtores
     public Pessoa(String nome, String email) {
         this.nome = nome;
         this.email = email;
@@ -27,5 +29,11 @@ public abstract class Pessoa {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    // Métodos
+    @Override
+    public String toString() {
+        return "Pessoa{nome='" + nome + "', email='" + email + "'}";
     }
 }

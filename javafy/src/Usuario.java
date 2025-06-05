@@ -1,18 +1,17 @@
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Usuario extends Pessoa{
     // Atributos
     private String login;
     private String senha;
-    private ArrayList<Playlist> playlists;
+    private final ArrayList<Playlist> playlists;
 
     // Construtor
     public Usuario(String nome, String email, String login, String senha){
-        super(nome, email); // Chamando o construtor da superclasse Pessoa.
+        super(nome, email);
         this.login = login;
         this.senha = senha;
-        this.playlists = new ArrayList<>(); // Inicializando playlists no construtor.
+        this.playlists = new ArrayList<>();
     }
 
     // Getters/Setters
@@ -35,22 +34,12 @@ public class Usuario extends Pessoa{
     }
     
     // Métodos
-    @Override
-    public String toString(){
-        // Aproveita o toString da superclasse Pessoa
-        return "Usuário: " + getNome() +
-               " | Email: " + getEmail() +
-               " | Login: " + login +
-               " | Playlists: " + playlists.size();
-    }
-
     public void criarPlaylist(String nomePlaylist){
         if(nomePlaylist == null || nomePlaylist.trim().isEmpty()){
             System.out.println("Erro: O nome da playlist não pode ser vazio.");
             return;
         }
 
-        // Verifica se já existe uma playlist com o mesmo nome para este usuário
         for(Playlist p : this.playlists){
             if(p.getNomePlaylist().equalsIgnoreCase(nomePlaylist)){
                 System.out.println("Erro: Já existe uma playlist com o nome '" + nomePlaylist + "'.");
@@ -58,7 +47,6 @@ public class Usuario extends Pessoa{
             }
         }
 
-        // Cria a nova playlist e a adiciona à lista do usuário
         Playlist novaPlaylist = new Playlist(nomePlaylist, this);
         this.playlists.add(novaPlaylist);
         System.out.println("Playlist '" + nomePlaylist + "' criada com sucesso para o usuário " + this.getNome() + ".");
@@ -66,6 +54,7 @@ public class Usuario extends Pessoa{
 
     public void excluirPlaylist(String nomePlaylist){
         Playlist playlistParaExcluir = null;
+
         for (Playlist p : this.playlists) {
             if (p.getNomePlaylist().equalsIgnoreCase(nomePlaylist)) {
                 playlistParaExcluir = p;
@@ -73,18 +62,10 @@ public class Usuario extends Pessoa{
             }
         }
 
-        if (playlistParaExcluir != null) {
-            Scanner scan = new Scanner(System.in);
-            System.out.print("Tem certeza que deseja excluir a playlist '" + nomePlaylist + "'? (s/n): ");
-            String confirmacao = scan.nextLine();
-            if (confirmacao.equalsIgnoreCase("s")) {
-                this.playlists.remove(playlistParaExcluir);
-                System.out.println("Playlist '" + nomePlaylist + "' excluída com sucesso.");
-            } else {
-               System.out.println("Exclusão cancelada.");
-            }
-            scan.close();
-        } else {
+        if(playlistParaExcluir != null){
+            this.playlists.remove(playlistParaExcluir);
+            System.out.println("Playlist '" + nomePlaylist + "' excluída com sucesso.");
+        } else{
             System.out.println("Erro: Playlist '" + nomePlaylist + "' não encontrada para o usuário " + this.getNome() + ".");
         }
     }
@@ -101,5 +82,10 @@ public class Usuario extends Pessoa{
             System.out.println((i + 1) + ". " + playlist.toString());
         }
         System.out.println("------------------------------------");
+    }
+
+    @Override
+    public String toString() {
+        return "Usuário: " + getNome() + " | Login: " + login + " | Playlists: " + playlists.size();
     }
 }

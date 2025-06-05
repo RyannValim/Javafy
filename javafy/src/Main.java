@@ -1,46 +1,153 @@
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.time.LocalDate;
 
 public class Main {
-    public static void main(String[] args) throws InterruptedException {
 
-        Scanner sc = new Scanner(System.in);
+    public static void main(String[] args) {
 
-        // --- Dados estáticos iniciais ---
+        System.out.println("=== Início do Teste do Javafy ===");
 
-        // Usuários
-        ArrayList<Usuario> usuarios = new ArrayList<>();
-        usuarios.add(new Usuario("Lucas", "lucas@javafy.com", "lucas", "C@xinha123"));
-        usuarios.add(new Usuario("Christian", "chris@javafy.com", "chris", "Ris@lis456"));
-        usuarios.add(new Usuario("Ryann", "ryann@javafy.com", "ryann", "P@odiQueijo789"));
+        // 1. Criando Artistas
+        Artista queen = new Artista("Queen", "queen@email.com"); // Adicionei email para consistência com Pessoa
+        Artista michaelJackson = new Artista("Michael Jackson", "mj@email.com");
+        System.out.println("\n--- Artistas Criados ---");
+        System.out.println(queen);
+        System.out.println(michaelJackson);
+        
+        // 2. Criando Músicas (Duração agora é int em segundos)
+        Musica bohemianRhapsody = new Musica(queen, "Bohemian Rhapsody", "Rock", 355, LocalDate.of(1975, 10, 31)); // 5 minutos e 55 segundos
+        Musica dontStopMeNow = new Musica(queen, "Don't Stop Me Now", "Rock", 209, LocalDate.of(1979, 1, 26)); // 3 minutos e 29 segundos
+        Musica thriller = new Musica(michaelJackson, "Thriller", "Pop", 357, LocalDate.of(1982, 11, 30)); // 5 minutos e 57 segundos
+        Musica billieJean = new Musica(michaelJackson, "Billie Jean", "Pop", 294, LocalDate.of(1982, 11, 30)); // 4 minutos e 54 segundos
 
-        // Artista
-        Artista artista1 = new Artista("Freddie Mercury");
+        System.out.println("\n--- Músicas Criadas ---");
+        bohemianRhapsody.exibirInfo();
+        dontStopMeNow.exibirInfo();
+        thriller.exibirInfo();
+        billieJean.exibirInfo();
 
-        // Músicas (data como String, conforme sua alteração)
-        Musica musica1 = new Musica(artista1, "Bohemian Rhapsody", "Rock", "5:55", "31/10/1975");
-        Musica musica2 = new Musica(artista1, "Don't Stop Me Now", "Rock", "3:29", "26/01/1979");
+        // 3. Criando Álbuns
+        Album singleBohemian = new Album("Bohemian Rhapsody (Single)", queen, LocalDate.of(1975, 10, 31));
+        singleBohemian.adicionarMusica(bohemianRhapsody);
+        System.out.println("\n--- Teste de Single ---");
+        singleBohemian.listarMusicas();
+        System.out.println("Tipo do single: " + singleBohemian.getTipo()); // Deve ser SINGLE
 
-        // Álbuns
-        Album album1 = new Album("A Night at the Opera", artista1, "31/10/1975");
-        album1.adicionarMusica(musica1);
+        Album aNightAtTheOpera = new Album("A Night at the Opera", queen, LocalDate.of(1975, 11, 21));
+        aNightAtTheOpera.adicionarMusica(bohemianRhapsody);
+        aNightAtTheOpera.adicionarMusica(new Musica(queen, "Love of My Life", "Rock", 218, LocalDate.of(1975, 11, 21)));
+        aNightAtTheOpera.adicionarMusica(new Musica(queen, "Prophet's Song", "Rock", 481, LocalDate.of(1975, 11, 21)));
+        System.out.println("\n--- Teste de Álbum Completo ---");
+        aNightAtTheOpera.listarMusicas();
+        System.out.println("Tipo do álbum: " + aNightAtTheOpera.getTipo()); // Deve ser ALBUM
 
-        Album album2 = new Album("Jazz", artista1, "10/11/1978");
-        album2.adicionarMusica(musica2);
+        Album thrillerAlbum = new Album("Thriller", michaelJackson, LocalDate.of(1982, 11, 30));
+        thrillerAlbum.adicionarMusica(thriller);
+        thrillerAlbum.adicionarMusica(billieJean);
+        System.out.println("\n--- Teste de Álbum Thriller ---");
+        thrillerAlbum.listarMusicas();
 
-        artista1.adicionarAlbum(album1);
-        artista1.adicionarAlbum(album2);
+        // 4. Testando métodos do Artista
+        queen.adicionarAlbum(aNightAtTheOpera);
+        queen.adicionarAlbum(singleBohemian);
+        queen.listarAlbuns();
 
-        // Playlist
+        michaelJackson.adicionarAlbum(thrillerAlbum);
+        michaelJackson.listarAlbuns();
 
-        Playlist playlist1 = new Playlist("Favoritas Rock", usuarios.get(0)); // Lucas como dono
-        playlist1.adicionarMusica(musica1);
-        playlist1.adicionarMusica(musica2);
+        System.out.println("\n--- Removendo álbum do Artista ---");
+        queen.removerAlbum("Bohemian Rhapsody (Single)");
+        queen.listarAlbuns();
 
+        // 5. Criando Usuários
+        Usuario user1 = new Usuario("Alice Silva", "alice@javafy.com", "alice.s", "senha123");
+        Usuario user2 = new Usuario("Bob Santos", "bob@javafy.com", "bob.s", "outrasenha");
+
+        System.out.println("\n--- Usuários Criados ---");
+        System.out.println(user1);
+        System.out.println(user2);
+
+        // 6. Testando Playlists do Usuário
+        System.out.println("\n--- Gerenciamento de Playlists do Alice ---");
+        user1.criarPlaylist("Minhas Favoritas");
+        user1.criarPlaylist("Rock Clássico");
+        user1.criarPlaylist("Rock Clássico"); // Tentando criar duplicata
+        user1.listarPlaylists();
+
+        // Adicionando músicas às playlists
+        System.out.println("\n--- Adicionando músicas à playlist 'Rock Clássico' ---");
+        Playlist rockClassico = null;
+        for (Playlist p : user1.getPlaylists()) {
+            if (p.getNomePlaylist().equals("Rock Clássico")) {
+                rockClassico = p;
+                break;
+            }
+        }
+
+        if (rockClassico != null) {
+            rockClassico.adicionarMusica(bohemianRhapsody);
+            rockClassico.adicionarMusica(dontStopMeNow);
+            rockClassico.adicionarMusica(bohemianRhapsody); // Tentando adicionar duplicata
+            rockClassico.listarMusicas();
+        }
+
+        System.out.println("\n--- Removendo música da playlist 'Rock Clássico' ---");
+        if (rockClassico != null) {
+            rockClassico.removerMusica("Don't Stop Me Now");
+            rockClassico.listarMusicas();
+            rockClassico.removerMusica("Música Inexistente"); // Tentando remover inexistente
+        }
+
+        System.out.println("\n--- Adicionando músicas à playlist 'Minhas Favoritas' ---");
+        Playlist minhasFavoritas = null;
+        for (Playlist p : user1.getPlaylists()) {
+            if (p.getNomePlaylist().equals("Minhas Favoritas")) {
+                minhasFavoritas = p;
+                break;
+            }
+        }
+        if (minhasFavoritas != null) {
+            minhasFavoritas.adicionarMusica(thriller);
+            minhasFavoritas.adicionarMusica(billieJean);
+            minhasFavoritas.listarMusicas();
+        }
+
+        System.out.println("\n--- Excluindo playlist do Alice ---");
+        user1.excluirPlaylist("Minhas Favoritas");
+        user1.excluirPlaylist("Playlist Inexistente");
+        user1.listarPlaylists();
+
+        // 7. Testando o Player
+        Player player = new Player();
+
+        System.out.println("\n--- Testando Player com Playlist ---");
+        if (rockClassico != null) {
+            player.tocarPlaylist(rockClassico);
+        } else {
+            System.out.println("Playlist 'Rock Clássico' não encontrada para tocar.");
+        }
+        
+        System.out.println("\n--- Testando Player com Música Única ---");
+        player.tocarMusica(billieJean);
+        
+        System.out.println("\n--- Testando Pausar Player ---");
+        player.pausarPlayer();
+        
+        System.out.println("\n--- Testando Pular Música ---");
+        player.tocarMusica(bohemianRhapsody); // Coloca uma música na fila
+        player.pularMusica(); // Pula a música
+        player.pularMusica(); // Tenta pular sem música na fila
+        
+        System.out.println("\n--- Testando Parar Player ---");
+        player.tocarMusica(thriller); // Coloca uma música
+        player.pararPlayer(); // Para e limpa
+
+        System.out.println("\n=== Fim do Teste do Javafy ===");
+    }
+}
 
         // -----------------------------------
 
-        int choice = -1;
+        /*int choice = -1;
 
         while (choice != 0) {
 
@@ -170,3 +277,4 @@ public class Main {
 
     }
 }
+*/
