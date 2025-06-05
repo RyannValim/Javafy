@@ -84,8 +84,8 @@ public class Playlist {
     @Override
     public String toString() {
         return "Playlist [Nome: " + nomePlaylist +
-               ", Criada em: " + dataCriacao.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")) +
-               ", Dono: " + dono.getNome() +
-               ", Músicas: " + musicas.size() + "]";
+                ", Criada em: " + dataCriacao.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")) +
+                ", Dono: " + dono.getNome() +
+                ", Músicas: " + musicas.size() + "]";
     }
 }
