@@ -1,14 +1,12 @@
-import java.time.LocalDateTime;
-
 public class Musica {
     private Artista artista;
     private String tituloMusica;
     private String generoMusica;
     private String duracaoMusica;
-    private LocalDateTime dataLancamentoMusica;
+    private String dataLancamentoMusica;
 
     // Construtor
-    public Musica(Artista artista, String tituloMusica, String generoMusica, String duracaoMusica, LocalDateTime dataLancamentoMusica) {
+    public Musica(Artista artista, String tituloMusica, String generoMusica, String duracaoMusica, String dataLancamentoMusica) {
         this.artista = artista;
         this.tituloMusica = tituloMusica;
         this.generoMusica = generoMusica;
@@ -49,20 +47,21 @@ public class Musica {
         this.duracaoMusica = duracaoMusica;
     }
 
-    public LocalDateTime getDataLancamentoMusica() {
+    public String getDataLancamentoMusica() {
         return dataLancamentoMusica;
     }
 
-    public void setDataLancamentoMusica(LocalDateTime dataLancamentoMusica) {
+    public void setDataLancamentoMusica(String dataLancamentoMusica) {
         this.dataLancamentoMusica = dataLancamentoMusica;
     }
 
     // Método para exibir informações da música
     public void exibirInfo() {
+        System.out.println("\n🎵 Informações da Música:");
         System.out.println("Título: " + tituloMusica);
         System.out.println("Artista: " + artista.getNome());
         System.out.println("Gênero: " + generoMusica);
         System.out.println("Duração: " + duracaoMusica);
-        System.out.println("Data de Lançamento: " + dataLancamentoMusica.toLocalDate());
+        System.out.println("Data de Lançamento: " + dataLancamentoMusica);
     }
 }

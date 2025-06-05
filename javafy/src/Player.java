@@ -9,36 +9,48 @@ public class Player {
         this.listaMusica = new LinkedList<>();
     }
 
-    // Getters
+    // Getter
     public Queue<Musica> getListaMusica() {
         return listaMusica;
     }
 
-    // Métodos
+    // Tocar uma playlist inteira
     public void tocarPlaylist(Playlist playlist) {
         listaMusica.clear();
         listaMusica.addAll(playlist.getMusicas());
         tocarPlayer();
     }
 
+    // Tocar uma música específica
     public void tocarMusica(Musica musica) {
         listaMusica.clear();
         listaMusica.add(musica);
         tocarPlayer();
     }
 
+    // Executar o player
     public void tocarPlayer() {
         if (listaMusica.isEmpty()) {
-            System.out.println("Nenhuma música na fila.");
+            System.out.println("\n🚫 Nenhuma música na fila.");
         } else {
-            System.out.println("Tocando...");
+            System.out.println("\n▶️ Iniciando reprodução...");
+
             for (Musica m : listaMusica) {
-                System.out.println("♪ " + m.getTituloMusica() + " - " + m.getArtista().getNome());
+                System.out.println("\n🎧 Tocando: " + m.getTituloMusica() + " - " + m.getArtista().getNome());
+                System.out.println("Gênero: " + m.getGeneroMusica());
+                System.out.println("Duração: " + m.getDuracaoMusica());
             }
+
+            System.out.println("\n✅ Fim da fila de reprodução.");
         }
     }
 
+    // Pausar o player
     public void pausarPlayer() {
-        System.out.println("Música pausada.");
+        if (listaMusica.isEmpty()) {
+            System.out.println("\n🚫 Nenhuma música está tocando para pausar.");
+        } else {
+            System.out.println("\n⏸️ Música pausada.");
+        }
     }
 }

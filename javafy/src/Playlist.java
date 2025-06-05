@@ -1,6 +1,5 @@
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Objects; // Para usar em equals/hashCode
 
 public class Playlist {
     // Atributos

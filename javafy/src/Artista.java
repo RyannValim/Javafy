@@ -1,33 +1,46 @@
 import java.util.ArrayList;
 
 public class Artista extends Pessoa {
-    // Atributos
     private ArrayList<Album> albuns;
 
-    // Construtor
-    public Artista(String nome, String email){
-        super(nome, email);
+    public Artista(String nome) {
+        super(nome);
         this.albuns = new ArrayList<>();
     }
 
-    // Getters/Setters
-    public ArrayList<Album> getAlbuns(){
+    public ArrayList<Album> getAlbuns() {
         return albuns;
     }
-    public void setAlbuns(ArrayList<Album> albuns){
+
+    public void setAlbuns(ArrayList<Album> albuns) {
         this.albuns = albuns;
     }
 
-    // Métodos
-    public void adicionarAlbum(Album album){
-        // implementar a lógica que permite o artista adicionar um álbum em seu perfil musical.
+    // Adiciona um álbum ao artista e define este artista no álbum
+    public void adicionarAlbum(Album album) {
+        if (album != null && !albuns.contains(album)) {
+            albuns.add(album);
+            album.setArtista(this);
+        }
     }
 
+    // Remove o álbum com o título fornecido da lista de álbuns do artista
     public void removerAlbum(String tituloAlbum) {
-        // // implementar a lógica que permite o artista remover um álbum do seu perfil musical.
+        if (tituloAlbum == null || tituloAlbum.isEmpty()) {
+            return;
+        }
+        albuns.removeIf(album -> album.getTituloAlbum().equalsIgnoreCase(tituloAlbum));
     }
 
-    public void listarAlbuns(){
-        // implementar a lógica para listar todos os álbuns do artista.
+    // Lista todos os álbuns do artista no console
+    public void listarAlbuns() {
+        if (albuns.isEmpty()) {
+            System.out.println("O artista " + getNome() + " não possui álbuns cadastrados.");
+            return;
+        }
+        System.out.println("Álbuns do artista " + getNome() + ":");
+        for (Album album : albuns) {
+            System.out.println("- " + album.getTituloAlbum() + " (lançado em: " + album.getDataLancamentoAlbum() + ")");
+        }
     }
 }
