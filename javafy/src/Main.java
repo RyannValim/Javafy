@@ -71,7 +71,7 @@ public class Main {
                     System.out.print("Digite o nome da Playlist: ");
                     String nomePlaylist = sc.nextLine();
                     Playlist playlist = usuario.getPlaylist(nomePlaylist);
-                    
+
                     if (playlist == null) {
                         System.out.println("Playlist não encontrada.");
                     } else {
@@ -84,7 +84,7 @@ public class Main {
                         switch (numMusica) {
                             case 1: musicaSelecionada = Main.bohemianRhapsody; break;
                             case 2: musicaSelecionada = Main.thriller; break;
-                            default: 
+                            default:
                                 System.out.println("Opção inválida.");
                                 break;
                         }
@@ -301,8 +301,6 @@ public class Main {
                     Menu.escolhaErrada();
             }
         }
-
-
         sc.close();
     }
 }
