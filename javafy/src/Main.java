@@ -10,9 +10,9 @@ public class Main {
 
         // Usuários
         ArrayList<Usuario> usuarios = new ArrayList<>();
-        usuarios.add(new Usuario("Lucas", "lucas@javafy.com", "lucas", "1234"));
-        usuarios.add(new Usuario("Christian", "chris@javafy.com", "chris", "abcd"));
-        usuarios.add(new Usuario("Ryann", "ryann@javafy.com", "ryann", "5678"));
+        usuarios.add(new Usuario("Lucas", "lucas@javafy.com", "lucas", "C@xinha123"));
+        usuarios.add(new Usuario("Christian", "chris@javafy.com", "chris", "Ris@lis456"));
+        usuarios.add(new Usuario("Ryann", "ryann@javafy.com", "ryann", "P@stel789"));
 
         // Artista
         Artista artista1 = new Artista("Freddie Mercury");
