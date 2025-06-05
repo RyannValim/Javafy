@@ -150,5 +150,23 @@ public class Main {
 
         sc.close();
 
+        Player player = new Player();
+
+    // Tocando uma música específica
+    System.out.println("\n--- Tocando uma música específica ---");
+    player.tocarMusica(musica1);
+
+    // Tocando uma playlist
+    System.out.println("\n--- Tocando uma playlist ---");
+    player.tocarPlaylist(playlist1);
+
+    // Tocando o que está no player atualmente
+    System.out.println("\n--- Tocando novamente o que está no player ---");
+    player.tocarPlayer();
+
+    // Pausando o player
+    System.out.println("\n--- Pausando o player ---");
+    player.pausarPlayer();
+
     }
 }
