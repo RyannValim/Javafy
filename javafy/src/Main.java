@@ -59,8 +59,8 @@ public class Main {
         queen.listarAlbuns();
 
         // 5. Criando Usuários
-        Usuario user1 = new Usuario("Alice Silva", "alice@javafy.com", "alice.s", "senha123");
-        Usuario user2 = new Usuario("Bob Santos", "bob@javafy.com", "bob.s", "outrasenha");
+        Usuario user1 = new Usuario("Alice Silva", "alice@javafy.com", "alice.s", "senha@123");
+        Usuario user2 = new Usuario("Bob Santos", "bob@javafy.com", "bob.s", "outrasenha@12");
 
         System.out.println("\n--- Usuários Criados ---");
         System.out.println(user1);
