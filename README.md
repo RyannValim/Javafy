@@ -3,7 +3,7 @@ Aplicação desenvolvida durante o 3° período de Ciência da Computação para
 
 Objetivos: desenvolver o aprendizado na matéria de Desenvolvimento de Software utilizando a linguagem de programação Java.
 
-Conhecimentos desenvolvidor:
+Conhecimentos desenvolvidos:
   - Desenvolvimento da parte básica (síntaxe e tipagem) da linguagem Java.
   - Relacionamento entre Classes;
   - Modificadores de acessos;
